@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-ink: #13122b;
+  --color-muted: #5f5b78;
+  --color-line: #e7e2d9;
+  --color-paper: #faf7f2;
+  --color-brand: #312e81;
+  --color-brand-soft: #eef0ff;
+  --color-marigold: #f59e0b;
+  --color-marigold-soft: #fff6e0;
+}
+
+html,
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Numbers line up in tables and big figures */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}

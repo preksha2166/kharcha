@@ -1,0 +1,73 @@
+# Render Blueprint: the API (free web service) and the React app (free static site).
+# Render dashboard → New → Blueprint → pick this repo. See README → "Deploy to Render".
+# Secrets are never written here: "sync: false" makes Render ask for them when you create the Blueprint.
+
+services:
+  # ---------- Backend: FastAPI ----------
+  - type: web
+    name: kharcha-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3 # the version the tests run on (Render's default is newer)
+      # PayPal sandbox app (developer.paypal.com → Apps & Credentials → Sandbox)
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_BASE_URL
+        value: https://api-m.sandbox.paypal.com
+      - key: PAYPAL_WEBHOOK_ID # fill in after the first deploy (README step 5)
+        sync: false
+      - key: DEMO_LANDLORD_EMAIL
+        sync: false
+      - key: DEMO_COLLEGE_EMAIL
+        sync: false
+      # Free key from aistudio.google.com
+      - key: GEMINI_API_KEY
+        sync: false
+      # The React app's URL, e.g. https://kharcha.onrender.com (no slash at the end)
+      - key: FRONTEND_URL
+        sync: false
+      # Optional: a free Postgres URL (e.g. Neon). Blank = SQLite, which resets whenever the server restarts.
+      - key: DATABASE_URL
+        sync: false
+      - key: DEMO_MODE
+        value: "true"
+      - key: FX_INR_PER_USD
+        value: "88"
+      - key: STUDENT_TIMEZONE
+        value: America/Los_Angeles
+      # Random key for the wake-up URL (/api/cron/daily-check?key=...), made by Render
+      - key: CRON_SECRET
+        generateValue: true
+
+  # ---------- Frontend: React + Vite ----------
+  - type: web
+    name: kharcha
+    runtime: static
+    buildCommand: cd frontend && npm ci && npm run build
+    staticPublishPath: frontend/dist
+    buildFilter:
+      paths:
+        - frontend/**
+    routes:
+      # React Router: every page path serves the app (real files like /sw.js are served as they are)
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /sw.js
+        name: Cache-Control
+        value: no-cache
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # The API's URL, e.g. https://kharcha-api.onrender.com (no slash at the end). Read at build time.
+      - key: VITE_API_URL
+        sync: false
