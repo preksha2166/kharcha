@@ -4,7 +4,9 @@
 
 Kharcha is a money copilot for international students living on a loan and money from home. It reads your lease, fee notices and loan letter, warns you **7 days before** a bill with a plan, and pays through **PayPal** on the smartest day, never outside the limits you approved.
 
-Built for the PayPal AI Hackathon 2026.
+Built for the PayPal AI Hackathon 2026 by **Preksha Dewoolkar** and **Chirag Patankar**.
+
+**Live demo:** https://kharcha-eka5.onrender.com (on a free server, so the first load can take up to a minute) · **Demo video:** https://youtu.be/27xjjOc04qQ
 
 ## What it does
 

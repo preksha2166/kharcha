@@ -1,7 +1,7 @@
 # Kharcha: Architecture
 
 > **Kharcha** (Hindi for "expenses") is a working name. Rename it anytime.
-> PayPal AI Hackathon (Devpost) · Solo project · Deadline **Thu Nov 12, 2026, 12:00 PM Pacific**
+> PayPal AI Hackathon (Devpost) · Team of two: Preksha Dewoolkar and Chirag Patankar · Deadline **Thu Nov 12, 2026, 12:00 PM Pacific**
 
 **Decisions marked 🔁 are defaults.** We hadn't picked a stack yet, so these are suggestions. Change them before **Nov 7**, when coding starts.
 
@@ -445,7 +445,7 @@ Both services are defined in [`render.yaml`](render.yaml) (a Render Blueprint). 
 
 ## 13. Who owns what
 
-Solo project: one person builds everything (backend, PayPal, AI, frontend, demo video, Devpost text). Build order: must-haves first, then record the video early enough to re-record if something breaks.
+Team of two. **Preksha Dewoolkar** led the project and built most of it: backend, PayPal integration, AI, frontend, deployment and the demo video. **Chirag Patankar** worked on documentation, video ideas and coding. Build order: must-haves first, then record the video early enough to re-record if something breaks.
 
 ---
 
@@ -454,4 +454,4 @@ Solo project: one person builds everything (backend, PayPal, AI, frontend, demo 
 1. Stack: Python (FastAPI) + React. Built.
 2. AI provider: Gemini free tier (no card needed).
 3. App name: Kharcha.
-4. Video: recorded solo, on this laptop.
+4. Video: recorded on this laptop.
